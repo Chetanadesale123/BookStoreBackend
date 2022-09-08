@@ -37,6 +37,13 @@ namespace BookStoreBackend
 
             services.AddTransient<IUserRL, UserRL>();
             services.AddTransient<IUserBL, UserBL>();
+            services.AddTransient<IAdminRL, AdminRL>();
+            services.AddTransient<IAdminBL, AdminBL>();
+            services.AddAuthorization(x =>
+            {
+                x.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                x.AddPolicy("RequireUsersRole", policy => policy.RequireRole("Users"));
+            });
 
             services.AddSwaggerGen(setup =>
             {
