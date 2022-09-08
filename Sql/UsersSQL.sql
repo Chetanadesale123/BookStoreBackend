@@ -54,3 +54,37 @@ SELECT
 	ERROR_LINE() AS ErrorLine,
 	ERROR_MESSAGE() AS ErrorMessage;
 END CATCH
+------------------stored procedure for ForgotPassword------------------
+create procedure SPForgotPassword(
+@Email varchar(255)
+)
+As
+Begin try
+select * from Users where Email=@Email
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+-----------------------------------stored procedure for ResetPassword----------------------------------------
+create procedure SPResetPassword(
+@Email varchar(255),
+@Password varchar(255)
+)
+AS
+BEGIN TRY
+update Users set Password=@Password where Email=@Email
+END TRY
+BEGIN CATCH
+SELECT
+      ERROR_NUMBER() AS ErrorNumber,
+	  ERROR_STATE() AS ErrorState,
+	  ERROR_PROCEDURE() AS ErrorProcedure,
+	  ERROR_LINE() AS ErrorLine,
+	  ERROR_MESSAGE() AS ErrorMessage
+END CATCH
