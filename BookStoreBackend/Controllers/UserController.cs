@@ -30,7 +30,26 @@ namespace BookStoreBackend.Controllers
             }
             catch (Exception ex)
             {
-
+                throw ex;
+            }
+        }
+        [HttpPost("Login")]
+        public IActionResult UserLogin(LogInModel userLoginModel)
+        {
+            try
+            {
+                var result = this.userBL.UserLogin(userLoginModel);
+                if (result != null)
+                {
+                    return this.Ok(new { Success = true, message = "Login Successful.. !", data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { Success = false, message = "Login failed.. !!" });
+                }
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

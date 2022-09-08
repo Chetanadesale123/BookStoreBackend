@@ -27,3 +27,30 @@ Begin
 	insert Users
 	values (@FullName, @Email, @Password, @MobileNumber)
 End;
+-----STORED PROCEDURE FOR GET ALL USERS-----
+
+CREATE PROCEDURE GetAllUsersSP
+As
+Begin
+select * from Users
+end
+
+
+------------- Store Procedure for Login---------------
+ALTER proc LogIn
+(
+@Email varchar(180),
+@Password varchar(50)
+)
+As
+Begin try
+select * from Users where Email=@Email and Password=@Password
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
