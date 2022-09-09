@@ -38,7 +38,7 @@ namespace CommonLayer.BookModel
         [DefaultValue(0)]
         [Range(0, 5.0, ErrorMessage = "Book Rating must be in Range: 0-5.0")]
         public decimal TotalRating { get; set; }
-
+        
         [Required]
         [DefaultValue(0)]
         public int RatingCount { get; set; }
