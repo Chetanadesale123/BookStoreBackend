@@ -45,6 +45,8 @@ namespace BookStoreBackend
             services.AddTransient<ICartBL, CartBL>();
             services.AddTransient<IWishListRL, WishListRL>();
             services.AddTransient<IWishListBL, WishListBL>();
+            services.AddTransient<IAddressRL, AddressRL>();
+            services.AddTransient<IAddressBL, AddressBL>();
             services.AddAuthorization(x =>
             {
                 x.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
