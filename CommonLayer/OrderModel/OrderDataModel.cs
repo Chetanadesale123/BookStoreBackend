@@ -7,9 +7,11 @@ namespace CommonLayer.OrderModel
 {
     public class OrderDataModel
     {
-        public int BookId { get; set; }
+        [Required]
+        public int CartId { get; set; }
+
+        [Required]
         public int AddressId { get; set; }
-        public int Quantity { get; set; }
 
     }
 }
